@@ -87,4 +87,38 @@ describe Sudoku::Board do
       board[4][0].should eq expected
     end
   end
+
+  describe "get_column" do
+    it "should return the column at the given index" do
+      index = 7
+      board = Sudoku::Board.new(FIELDS)
+
+      expected = [8, 0, 0, 6, 0, 0, 0, 0, 9] 
+      actual = board.get_column(index)
+      
+      actual.each_with_index do |item, i|
+        item.should eq expected[i]
+      end
+    end
+  end
+
+  describe "get_region" do
+    it "should return the region that contains the given coords" do
+      tests = [
+        {coords: {4, 5}, expected: [0, 0, 0, 0, 4, 0, 1, 0, 0]},
+        {coords: {7, 8}, expected: [0, 0, 0, 1, 0, 0, 0, 9, 0]},
+        {coords: {1, 0}, expected: [7, 0, 0, 2, 0, 3, 0, 0, 0]}
+      ]
+      board = Sudoku::Board.new(FIELDS)
+
+      tests.each do |test|
+        expected = test[:expected]
+        actual = board.get_region(test[:coords])
+
+        actual.each_with_index do |item, i|
+          item.should eq expected[i]
+        end
+      end
+    end
+  end
 end
