@@ -33,18 +33,18 @@ class Sudoku::Board
   def get_region(coords : Tuple(Int32, Int32)) : Array(Int32)
     x = (coords[0] // 3) * 3
     y = (coords[1] // 3) * 3
-    y_counter = 0
+    x_counter = 0
 
     region = Array(Int32).new
 
     loop do
-      x_counter = 0
-      while x_counter < 3
-        region << @board[y + y_counter][x + x_counter]
-        x_counter += 1
+      y_counter = 0
+      while y_counter < 3
+        region << @board[x + x_counter][y + y_counter]
+        y_counter += 1
       end
-      y_counter += 1
-      break if y_counter == 3
+      x_counter += 1
+      break if x_counter == 3
     end
 
     return region

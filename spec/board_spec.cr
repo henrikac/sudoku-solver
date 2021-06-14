@@ -105,6 +105,7 @@ describe Sudoku::Board do
   describe "get_region" do
     it "should return the region that contains the given coords" do
       tests = [
+        {coords: {0, 5}, expected: [0, 0, 0, 0, 0, 0, 0, 5, 0]},
         {coords: {4, 5}, expected: [0, 0, 0, 0, 4, 0, 1, 0, 0]},
         {coords: {7, 8}, expected: [0, 0, 0, 1, 0, 0, 0, 9, 0]},
         {coords: {1, 0}, expected: [7, 0, 0, 2, 0, 3, 0, 0, 0]}
