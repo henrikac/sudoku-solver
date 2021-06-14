@@ -10,16 +10,15 @@ class Sudoku::Board
   end
 
   # Creates a new sudoku board
-  def initialize(@board : Array(Array(Int32))); end
+  def initialize(@board : Array(Array(Int32)))
+    if @board.flatten.size != (SIZE * SIZE)
+      raise Sudoku::InvalidBoardError.new("a sudoku board must be #{SIZE}x#{SIZE}")
+    end
+  end
 
   # Returns the element at the given *index*.
   def [](index : Int)
     @board[index]
-  end
-
-  # Sets the given *value* at the given *index*.
-  def []=(index : Int, value : Int32)
-    @board[index] = value
   end
 
   # Returns the column at the given *index*.

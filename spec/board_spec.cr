@@ -47,6 +47,19 @@ describe Sudoku::Board do
         end
       end
     end
+
+    it "should raise an InvalidBoardError if board does not have the correct size" do
+      fields = [
+        [1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [1, 2, 3, 4, 5, 6, 7, 8, 9],
+        [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      ]
+
+      expect_raises(Sudoku::InvalidBoardError) do
+        Sudoku::Board.new(fields)
+      end
+    end
   end
 
   describe "empty?" do
@@ -73,18 +86,6 @@ describe Sudoku::Board do
       actual.each_with_index do |item, i|
         item.should eq expected[i]
       end
-    end
-  end
-
-  describe "[]=(index, value)" do
-    it "should set the given value at the given index" do
-      board = Sudoku::Board.new(FIELDS)
-
-      expected = 2
-      
-      board[4][0] = 2
-
-      board[4][0].should eq expected
     end
   end
 

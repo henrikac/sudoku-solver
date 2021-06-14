@@ -36,5 +36,13 @@ describe Sudoku::Solver do
         end
       end
     end
+
+    it "should raise an EmptyBoardError if an empty board is passed to the method" do
+      board = Sudoku::Board.new
+
+      expect_raises(Sudoku::EmptyBoardError) do
+        Sudoku::Solver.solve(board)
+      end
+    end
   end
 end
